@@ -11,7 +11,9 @@ public class WorkWithExceptions
      */
     public void exceptionProcessing()
     {
-
+        /*
+        ...
+         */
     }
 
     private void throwCheckedException() throws Exception
