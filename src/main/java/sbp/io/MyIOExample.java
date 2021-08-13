@@ -3,16 +3,16 @@ package sbp.io;
 public class MyIOExample
 {
     /**
-     * Создать объект класса {@link java.io.File}, проверить существование и чем является (фалй или директория).
-     * Если сущность существует, то вывести в консоль информацию:
-     *      - абсолютный путь
-     *      - родительский путь
-     * Если сущность является файлом, то вывести в консоль:
-     *      - размер
-     *      - время последнего изменения
-     * Необходимо использовать класс {@link java.io.File}
-     * @param fileName - имя файла
-     * @return - true, если файл успешно создан
+     * РЎРѕР·РґР°С‚СЊ РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° {@link java.io.File}, РїСЂРѕРІРµСЂРёС‚СЊ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Рё С‡РµРј СЏРІР»СЏРµС‚СЃСЏ (С„Р°Р»Р№ РёР»Рё РґРёСЂРµРєС‚РѕСЂРёСЏ).
+     * Р•СЃР»Рё СЃСѓС‰РЅРѕСЃС‚СЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РІС‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ РёРЅС„РѕСЂРјР°С†РёСЋ:
+     *      - Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ
+     *      - СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ РїСѓС‚СЊ
+     * Р•СЃР»Рё СЃСѓС‰РЅРѕСЃС‚СЊ СЏРІР»СЏРµС‚СЃСЏ С„Р°Р№Р»РѕРј, С‚Рѕ РІС‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ:
+     *      - СЂР°Р·РјРµСЂ
+     *      - РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РёР·РјРµРЅРµРЅРёСЏ
+     * РќРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР»Р°СЃСЃ {@link java.io.File}
+     * @param fileName - РёРјСЏ С„Р°Р№Р»Р°
+     * @return - true, РµСЃР»Рё С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ
      */
     public boolean workWithFile(String fileName)
     {
@@ -23,11 +23,11 @@ public class MyIOExample
     }
 
     /**
-     * Метод должен создавать копию файла
-     * Необходимо использовать IO классы {@link java.io.FileInputStream} и {@link java.io.FileOutputStream}
-     * @param sourceFileName - имя исходного файла
-     * @param destinationFileName - имя копии файла
-     * @return - true, если файл успешно скопирован
+     * РњРµС‚РѕРґ РґРѕР»Р¶РµРЅ СЃРѕР·РґР°РІР°С‚СЊ РєРѕРїРёСЋ С„Р°Р№Р»Р°
+     * РќРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ IO РєР»Р°СЃСЃС‹ {@link java.io.FileInputStream} Рё {@link java.io.FileOutputStream}
+     * @param sourceFileName - РёРјСЏ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+     * @param destinationFileName - РёРјСЏ РєРѕРїРёРё С„Р°Р№Р»Р°
+     * @return - true, РµСЃР»Рё С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРєРѕРїРёСЂРѕРІР°РЅ
      */
     public boolean copyFile(String sourceFileName, String destinationFileName)
     {
@@ -38,11 +38,11 @@ public class MyIOExample
     }
 
     /**
-     * Метод должен создавать копию файла
-     * Необходимо использовать IO классы {@link java.io.BufferedInputStream} и {@link java.io.BufferedOutputStream}
-     * @param sourceFileName - имя исходного файла
-     * @param destinationFileName - имя копии файла
-     * @return - true, если файл успешно скопирован
+     * РњРµС‚РѕРґ РґРѕР»Р¶РµРЅ СЃРѕР·РґР°РІР°С‚СЊ РєРѕРїРёСЋ С„Р°Р№Р»Р°
+     * РќРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ IO РєР»Р°СЃСЃС‹ {@link java.io.BufferedInputStream} Рё {@link java.io.BufferedOutputStream}
+     * @param sourceFileName - РёРјСЏ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+     * @param destinationFileName - РёРјСЏ РєРѕРїРёРё С„Р°Р№Р»Р°
+     * @return - true, РµСЃР»Рё С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРєРѕРїРёСЂРѕРІР°РЅ
      */
     public boolean copyBufferedFile(String sourceFileName, String destinationFileName)
     {
@@ -53,11 +53,11 @@ public class MyIOExample
     }
 
     /**
-     * Метод должен создавать копию файла
-     * Необходимо использовать IO классы {@link java.io.FileReader} и {@link java.io.FileWriter}
-     * @param sourceFileName - имя исходного файла
-     * @param destinationFileName - имя копии файла
-     * @return - true, если файл успешно скопирован
+     * РњРµС‚РѕРґ РґРѕР»Р¶РµРЅ СЃРѕР·РґР°РІР°С‚СЊ РєРѕРїРёСЋ С„Р°Р№Р»Р°
+     * РќРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ IO РєР»Р°СЃСЃС‹ {@link java.io.FileReader} Рё {@link java.io.FileWriter}
+     * @param sourceFileName - РёРјСЏ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+     * @param destinationFileName - РёРјСЏ РєРѕРїРёРё С„Р°Р№Р»Р°
+     * @return - true, РµСЃР»Рё С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРєРѕРїРёСЂРѕРІР°РЅ
      */
     public boolean copyFileWithReaderAndWriter(String sourceFileName, String destinationFileName)
     {
