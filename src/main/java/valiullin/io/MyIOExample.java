@@ -1,9 +1,6 @@
 package valiullin.io;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class MyIOExample
 {
@@ -92,9 +89,34 @@ public class MyIOExample
      */
     public boolean copyBufferedFile(String sourceFileName, String destinationFileName)
     {
-        /*
-        ...
-         */
+        File sourceFile = new File(sourceFileName);
+        File destinationFile = new File(destinationFileName);
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(sourceFile);
+            FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+
+            int i;
+            while((i = bufferedInputStream.read()) != -1) {
+                bufferedOutputStream.write((char)i);
+            }
+
+            bufferedInputStream.close();
+            bufferedOutputStream.close();
+
+            fileInputStream.close();
+            fileOutputStream.close();
+
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
         return false;
     }
 

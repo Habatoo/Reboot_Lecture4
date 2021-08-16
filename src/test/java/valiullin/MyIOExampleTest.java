@@ -52,7 +52,7 @@ public class MyIOExampleTest {
 
 
     /**
-     * Пытаемся скопировать файл файл
+     * Пытаемся скопировать файл
      * Ожидаем true
      */
     @Test
@@ -61,6 +61,20 @@ public class MyIOExampleTest {
         String destinationFileName = path + "destinationFile.txt";
 
         boolean result = myIOExample.copyFile(sourceFileName, destinationFileName);
+        Assertions.assertEquals(result, true);
+    }
+
+
+    /**
+     * Пытаемся скопировать файл
+     * Ожидаем true
+     */
+    @Test
+    public void copyBufferedFile_Test(){
+        String sourceFileName = path + "sourceFile.txt";
+        String destinationFileName = path + "destinationFile.txt";
+
+        boolean result = myIOExample.copyBufferedFile(sourceFileName, destinationFileName);
         Assertions.assertEquals(result, true);
     }
 
