@@ -78,5 +78,18 @@ public class MyIOExampleTest {
         Assertions.assertEquals(result, true);
     }
 
+    /**
+     * Пытаемся скопировать файл
+     * Ожидаем true
+     */
+    @Test
+    public void copyFileWithReaderAndWriter_Test(){
+        String sourceFileName = path + "sourceFile.txt";
+        String destinationFileName = path + "destinationFile.txt";
+
+        boolean result = myIOExample.copyFileWithReaderAndWriter(sourceFileName, destinationFileName);
+        Assertions.assertEquals(result, true);
+    }
+
 
 }

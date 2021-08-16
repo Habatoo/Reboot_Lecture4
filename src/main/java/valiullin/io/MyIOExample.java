@@ -129,9 +129,28 @@ public class MyIOExample
      */
     public boolean copyFileWithReaderAndWriter(String sourceFileName, String destinationFileName)
     {
-        /*
-        ...
-         */
+        File sourceFile = new File(sourceFileName);
+        File destinationFile = new File(destinationFileName);
+
+        try {
+            FileReader fileReader = new FileReader(sourceFile);
+            FileWriter fileWriter = new FileWriter(destinationFile);
+
+            int i;
+            while((i = fileReader.read()) != -1) {
+                fileWriter.write((char)i);
+            }
+
+            fileReader.close();
+            fileWriter.close();
+
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
         return false;
     }
 }
