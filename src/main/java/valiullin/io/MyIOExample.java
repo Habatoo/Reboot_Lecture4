@@ -1,6 +1,8 @@
 package valiullin.io;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MyIOExample
@@ -56,9 +58,28 @@ public class MyIOExample
      */
     public boolean copyFile(String sourceFileName, String destinationFileName)
     {
-        /*
-        ...
-         */
+        File sourceFile = new File(sourceFileName);
+        File destinationFile = new File(destinationFileName);
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(sourceFile);
+            FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+
+            int i;
+            while((i=fileInputStream.read())!= -1){
+                fileOutputStream.write((char)i);
+            }
+
+            fileInputStream.close();
+            fileOutputStream.close();
+
+            return true;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
         return false;
     }
 

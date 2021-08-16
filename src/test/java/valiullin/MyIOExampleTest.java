@@ -1,9 +1,6 @@
 package valiullin;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import valiullin.io.MyIOExample;
 
@@ -14,6 +11,15 @@ import java.io.IOException;
 import static org.mockito.ArgumentMatchers.anyString;
 
 public class MyIOExampleTest {
+
+    String path;
+    MyIOExample myIOExample;
+
+    @BeforeEach
+    public void init(){
+        path = "./src/test/java/valiullin/";
+        myIOExample = new MyIOExample();
+    }
 
     @AfterAll
     public static void clean(){
@@ -28,8 +34,7 @@ public class MyIOExampleTest {
      */
     @Test
     public void workWithFile_Test_with_exist_file(){
-        String fileName = "./src/test/java/valiullin/test.txt";
-        MyIOExample myIOExample = new MyIOExample();
+        String fileName = path + "test.txt";
         boolean result = myIOExample.workWithFile(fileName);
         Assertions.assertEquals(result, false);
     }
@@ -40,9 +45,22 @@ public class MyIOExampleTest {
      */
     @Test
     public void workWithFile_Test_with_not_exist_file(){
-        String fileName = "./src/test/java/valiullin/not_exist.txt";
-        MyIOExample myIOExample = new MyIOExample();
+        String fileName = path + "not_exist.txt";
         boolean result = myIOExample.workWithFile(fileName);
+        Assertions.assertEquals(result, true);
+    }
+
+
+    /**
+     * Пытаемся скопировать файл файл
+     * Ожидаем true
+     */
+    @Test
+    public void copyFile_Test(){
+        String sourceFileName = path + "sourceFile.txt";
+        String destinationFileName = path + "destinationFile.txt";
+
+        boolean result = myIOExample.copyFile(sourceFileName, destinationFileName);
         Assertions.assertEquals(result, true);
     }
 
