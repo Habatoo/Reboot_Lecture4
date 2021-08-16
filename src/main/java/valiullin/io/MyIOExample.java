@@ -1,5 +1,8 @@
 package valiullin.io;
 
+import java.io.File;
+import java.io.IOException;
+
 public class MyIOExample
 {
     /**
@@ -14,11 +17,33 @@ public class MyIOExample
      * @param fileName - имя файла
      * @return - true, если файл успешно создан
      */
-    public boolean workWithFile(String fileName)
-    {
-        /*
-        ...
-         */
+    public boolean workWithFile(String fileName){
+        File file = new File(fileName);
+
+        if (file.exists()) {
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.getParent());
+            System.out.println("----------");
+
+            if (file.isFile()) {
+                System.out.println("It is file:");
+                System.out.println(file.length());
+                System.out.println(file.lastModified());
+            }
+
+        } else {
+
+            try{
+                if (file.createNewFile()) {
+                    System.out.println("File has been created");
+                    return true;
+                }
+            }
+            catch (IOException e){
+                System.out.println("File was not created");
+            }
+        }
+
         return false;
     }
 
