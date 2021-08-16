@@ -1,5 +1,7 @@
 package valiullin.exceptions;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 public class WorkWithExceptions
 {
     /**
@@ -9,11 +11,41 @@ public class WorkWithExceptions
      * Впойманное исключение необходимо упаковать в кастомное исключение и пробросить выше
      * Перед завершением работы метода обязательно необходимо вывести в консоль сообщение "Finish"
      */
-    public void exceptionProcessing()
+    public void exceptionProcessing() throws MyExeption
     {
-        /*
-        ...
-         */
+        try {
+            throwCheckedException();
+
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            throw new MyExeption("MyExeption: " + e.getMessage());
+        }
+        finally {
+            System.out.println("Finish");
+        }
+
+    }
+
+    /**
+     * Перегруженный метод
+     * @param someStr
+     * @throws MyRuntimeExeption
+     */
+    public void exceptionProcessing(String someStr) throws MyRuntimeExeption
+    {
+        try {
+            throwUncheckedException();
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            throw new MyRuntimeExeption(e.getMessage());
+        }
+        finally {
+            System.out.println("Finish " + someStr);
+        }
     }
 
     /**
