@@ -57,27 +57,24 @@ public class MyIOExample
     {
         File sourceFile = new File(sourceFileName);
         File destinationFile = new File(destinationFileName);
+        boolean success = false;
 
-        try {
-            FileInputStream fileInputStream = new FileInputStream(sourceFile);
-            FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+        try(FileInputStream fileInputStream = new FileInputStream(sourceFile);
+            FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);) {
 
             int i;
             while((i=fileInputStream.read())!= -1){
                 fileOutputStream.write((char)i);
             }
 
-            fileInputStream.close();
-            fileOutputStream.close();
-
-            return true;
+            success = true;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        return false;
+        return success;
     }
 
     /**
@@ -91,33 +88,27 @@ public class MyIOExample
     {
         File sourceFile = new File(sourceFileName);
         File destinationFile = new File(destinationFileName);
+        boolean success = false;
 
-        try {
-            FileInputStream fileInputStream = new FileInputStream(sourceFile);
+        try(FileInputStream fileInputStream = new FileInputStream(sourceFile);
             FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
-
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);)
+        {
 
             int i;
             while((i = bufferedInputStream.read()) != -1) {
                 bufferedOutputStream.write((char)i);
             }
 
-            bufferedInputStream.close();
-            bufferedOutputStream.close();
-
-            fileInputStream.close();
-            fileOutputStream.close();
-
-            return true;
+            success = true;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        return false;
+        return success;
     }
 
     /**
@@ -131,26 +122,23 @@ public class MyIOExample
     {
         File sourceFile = new File(sourceFileName);
         File destinationFile = new File(destinationFileName);
+        boolean success = false;
 
-        try {
-            FileReader fileReader = new FileReader(sourceFile);
-            FileWriter fileWriter = new FileWriter(destinationFile);
-
+        try(FileReader fileReader = new FileReader(sourceFile);
+            FileWriter fileWriter = new FileWriter(destinationFile);)
+        {
             int i;
             while((i = fileReader.read()) != -1) {
                 fileWriter.write((char)i);
             }
 
-            fileReader.close();
-            fileWriter.close();
-
-            return true;
+            success = true;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        return false;
+        return success;
     }
 }
