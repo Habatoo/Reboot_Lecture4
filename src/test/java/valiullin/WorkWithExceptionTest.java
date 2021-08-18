@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import valiullin.exceptions.MyExeption;
 import valiullin.exceptions.MyRuntimeExeption;
 import valiullin.exceptions.WorkWithExceptions;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -33,15 +34,14 @@ public class WorkWithExceptionTest {
     /**
      * Ожидаем исключение MyRuntimeExeption
      */
+
     @Test
     public void exceptionProcessing_Test_Runtime_Exeption(){
         WorkWithExceptions workWithException = new WorkWithExceptions();
 
-        try {
-            workWithException.exceptionProcessing("runtime exeption");
-        }
-        catch (MyRuntimeExeption e){
-            Assertions.assertEquals(e.getMessage().contains("MyRuntimeExeption"), true);
-        }
+        MyRuntimeExeption myRuntimeExeption = assertThrows(MyRuntimeExeption.class,
+                () -> workWithException.exceptionProcessing("runtime exeption"));
+
+        Assertions.assertTrue(myRuntimeExeption.getMessage().contains("MyRuntimeExeption"));
     }
 }
