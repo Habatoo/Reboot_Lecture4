@@ -11,56 +11,23 @@ public class WorkWithExceptions
      */
     public void exceptionProcessing() throws CustomCheckedException
     {
-
         try
         {
-
-            System.out.println("Throw UncheckedException");
             throwUncheckedException();
-
-        } catch (RuntimeException re) {
-
+            throwUncheckedException();
+        }
+        catch (RuntimeException re)
+        {
             System.out.println("Catch UncheckedException: " + re.getMessage());
             re.getStackTrace();
 
-            try
-            {
-
-                System.out.println("Throw CustomCheckedException");
-                throwCustomCheckedException();
-
-            } catch (CustomCheckedException cce) {
-
-                System.out.println("Catch CustomCheckedException: " + cce.getMessage());
-                cce.printStackTrace();
-
-                try
-                {
-
-                    System.out.println("Throw throwCheckedException");
-                    throwUncheckedException();
-
-                } catch (Exception e) {
-
-                    System.out.println("Catch throwCheckedException: " + e.getMessage());
-                    e.getStackTrace();
-
-                    try
-                    {
-
-                        throwCustomRuntimeException();
-
-                    } catch (CustomRuntimeException cre) {
-
-                        System.out.println("Catch throwCustomRuntimeException: " + cre.getMessage());
-                        cre.printStackTrace();
-
-                    }
-
-                }
-
-            }
-
+            System.out.println("Throw CustomCheckedException");
+            throwCustomCheckedException();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Catch throwCustomCheckedException: " + e.getMessage());
+            e.getStackTrace();
         }
         finally
         {
@@ -68,6 +35,7 @@ public class WorkWithExceptions
         }
 
     }
+
 
     /**
      * (* - необязательно) Доп. задание.
@@ -131,14 +99,6 @@ public class WorkWithExceptions
      */
     private void throwCustomCheckedException() throws CustomCheckedException {
         throw new CustomCheckedException("CustomCheckedException exception");
-    }
-
-    /**
-     * Метод вызывающий выбрасывание CustomRuntimeException.
-     * @throws CustomRuntimeException
-     */
-    private void throwCustomRuntimeException() throws CustomRuntimeException {
-        throw new CustomRuntimeException("CustomRuntimeException exception");
     }
 
     private void throwCheckedException() throws Exception {

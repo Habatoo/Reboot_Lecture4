@@ -21,10 +21,8 @@ public class WorkWithExceptionsTest {
     @BeforeEach
     void setUp()
     {
-
         workWithExceptions = new WorkWithExceptions();
         System.setOut(new PrintStream(outContent));
-
     }
 
     /**
@@ -34,9 +32,7 @@ public class WorkWithExceptionsTest {
     @AfterEach
     void restoreStreams()
     {
-
         System.setOut(originalOut);
-
     }
 
     /**
@@ -44,32 +40,23 @@ public class WorkWithExceptionsTest {
      * при вызове методов {@link WorkWithExceptions# throwCheckedException} и
      * {@link WorkWithExceptions# throwUncheckedException}.
      *
-     * Сценарий, при котором метод отрабатывает и возвращает сообщение
+     * Сценарий, при котором метод отрабатывает и выбрасывает кастомное исключение CustomCheckedException
+     * и возвращает сообщение
      * <br>
-     * <br>Throw UncheckedException
      * <br>Catch UncheckedException: Unchecked exception
      * <br>Throw CustomCheckedException
-     * <br>Catch CustomCheckedException: CustomException message CustomCheckedException exception
-     * <br>Throw throwCheckedException
-     * <br>Catch throwCheckedException: Unchecked exception
-     * <br>Catch throwCustomRuntimeException: CustomRuntimeException message CustomRuntimeException exception
      * <br>Finish
      */
     @Test
-    public void exceptionProcessing_Test() throws CustomCheckedException
+    public void exceptionProcessing_Test()
     {
-        workWithExceptions.exceptionProcessing();
-        Assertions.assertEquals("Throw UncheckedException" + System.lineSeparator() +
-                "Catch UncheckedException: Unchecked exception" + System.lineSeparator() +
+        Throwable throwable = Assertions.assertThrows(
+                CustomCheckedException.class, () -> workWithExceptions.exceptionProcessing());
+        Assertions.assertEquals(
+                "CustomException message CustomCheckedException exception", throwable.getMessage());
+        Assertions.assertEquals("Catch UncheckedException: Unchecked exception" + System.lineSeparator() +
                 "Throw CustomCheckedException" + System.lineSeparator() +
-                "Catch CustomCheckedException: CustomException message CustomCheckedException exception"
-                + System.lineSeparator() +
-                "Throw throwCheckedException" + System.lineSeparator() +
-                "Catch throwCheckedException: Unchecked exception" + System.lineSeparator() +
-                "Catch throwCustomRuntimeException: CustomRuntimeException message CustomRuntimeException exception"
-                + System.lineSeparator() +
                 "Finish", outContent.toString().trim());
-
     }
 
     /**

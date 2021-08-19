@@ -51,21 +51,17 @@ public class MyIOExample
         try (InputStream fileInputStream = new FileInputStream(sourceFileName);
              OutputStream fileOutputStream = new FileOutputStream(destinationFileName))
         {
-
             while (fileInputStream.available() > 0)
             {
                 int data = fileInputStream.read();
                 fileOutputStream.write(data);
             }
-
             return workWithFile(destinationFileName) && checkFileContentEqual(sourceFileName, destinationFileName);
         }
         catch (IOException ioException)
         {
-            ioException.printStackTrace();
             return false;
         }
-
     }
 
     /**
@@ -77,40 +73,29 @@ public class MyIOExample
      */
     public boolean copyBufferedFile(String sourceFileName, String destinationFileName)
     {
-        try
+        try (InputStream fileInputStream = new FileInputStream(sourceFileName);
+             OutputStream fileOutputStream = new FileOutputStream(destinationFileName);
+             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream))
         {
-            InputStream fileInputStream = new FileInputStream(sourceFileName);
-            OutputStream fileOutputStream = new FileOutputStream(destinationFileName);
-
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-
             while (bufferedInputStream.available() > 0)
             {
                 bufferedOutputStream.write(bufferedInputStream.read());
             }
-
-            bufferedOutputStream.close();;
-            bufferedInputStream.close();
-
-            fileOutputStream.close();
-            fileInputStream.close();
+            bufferedOutputStream.flush();
 
             return workWithFile(destinationFileName) && checkFileContentEqual(sourceFileName, destinationFileName);
         }
-
         catch (FileNotFoundException fileNotFoundException)
         {
             fileNotFoundException.printStackTrace();
             return false;
         }
-
         catch (IOException ioException)
         {
             ioException.printStackTrace();
             return false;
         }
-
     }
 
     /**
@@ -122,40 +107,31 @@ public class MyIOExample
      */
     public boolean copyFileWithReaderAndWriter(String sourceFileName, String destinationFileName)
     {
-
         File sourceFile = new File(sourceFileName);
         File destinationFile = new File(destinationFileName);
 
-        try
+        try (Reader reader = new FileReader(sourceFile);
+             Writer writer = new FileWriter(destinationFile))
         {
-            Reader reader = new FileReader(sourceFile);
-            Writer writer = new FileWriter(destinationFile);
             Scanner scanner = new Scanner(reader);
-
             while (scanner.hasNextLine())
             {
                 String line = scanner.nextLine();
                 writer.write(line + System.lineSeparator());
             }
-
-            writer.close();
-            reader.close();
-
+            writer.flush();
             return workWithFile(destinationFileName) && checkFileContentEqual(sourceFileName, destinationFileName);
         }
-
         catch (FileNotFoundException fileNotFoundException)
         {
             fileNotFoundException.printStackTrace();
             return false;
         }
-
         catch (IOException ioException)
         {
             ioException.printStackTrace();
             return false;
         }
-
     }
 
     /**
@@ -167,12 +143,9 @@ public class MyIOExample
      */
     public boolean checkFileContentEqual(String sourceFileName, String destinationFileName)
     {
-
-        try
+        try (InputStream fileInputStream = new FileInputStream(sourceFileName);
+             InputStream fileOutputStream = new FileInputStream(destinationFileName))
         {
-            InputStream fileInputStream = new FileInputStream(sourceFileName);
-            InputStream fileOutputStream = new FileInputStream(destinationFileName);
-
             while (fileInputStream.available() > 0)
             {
                 int dataInput = fileInputStream.read();
@@ -201,6 +174,8 @@ public class MyIOExample
             ioException.printStackTrace();
             return false;
         }
+        finally {
 
+        }
     }
 }

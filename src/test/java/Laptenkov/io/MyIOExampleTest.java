@@ -26,7 +26,6 @@ public class MyIOExampleTest
     private String sourceFileName_test = "MyFile";
     private String destinationFileName_test = "MyFileTest";
 
-
     /**
      * Инициализация экземпляра тестируемого класса {@link MyIOExample}
      * и объекта {@link File# file}.
@@ -34,10 +33,8 @@ public class MyIOExampleTest
     @BeforeEach
     void setUp()
     {
-
         myIOExample = new MyIOExample();
         file = new File(sourceFileName_test);
-
     }
 
     /**
@@ -47,12 +44,10 @@ public class MyIOExampleTest
     @AfterEach
     void clearFile()
     {
-
         file = new File(destinationFileName_test);
         if (file.exists()) {
             file.delete();
         }
-
     }
 
     /**
@@ -66,10 +61,8 @@ public class MyIOExampleTest
     @Test
     void workWithFileExistsObject_Test() throws IOException
     {
-
         boolean result = myIOExample.workWithFile(sourceFileName_test);
         Assertions.assertEquals(result, true);
-
     }
 
     /**
@@ -82,10 +75,8 @@ public class MyIOExampleTest
     @Test
     void workWithFileNotExistsObject_Test() throws IOException
     {
-
         boolean result = myIOExample.workWithFile(destinationFileName_test);
         Assertions.assertEquals(result, false);
-
     }
 
     /**
@@ -99,10 +90,8 @@ public class MyIOExampleTest
     @Test
     void workWithFileNotFile_Test() throws IOException
     {
-
         boolean result = myIOExample.workWithFile("/");
         Assertions.assertEquals(result, false);
-
     }
 
     /**
@@ -117,10 +106,8 @@ public class MyIOExampleTest
     @Test
     void copyFileSuccess_Test()
     {
-
         boolean result = myIOExample.copyFile(sourceFileName_test, destinationFileName_test);
         Assertions.assertEquals(result, true);
-
     }
 
     /**
@@ -133,10 +120,8 @@ public class MyIOExampleTest
     @Test
     void copyFileFail_Test()
     {
-
         boolean result = myIOExample.copyFile("failAddress", destinationFileName_test);
         Assertions.assertEquals(result, false);
-
     }
 
     /**
@@ -153,10 +138,8 @@ public class MyIOExampleTest
     @Test
     void copyBufferedFileSuccess_Test()
     {
-
         boolean result = myIOExample.copyBufferedFile(sourceFileName_test, destinationFileName_test);
         Assertions.assertEquals(result, true);
-
     }
 
     /**
@@ -170,11 +153,9 @@ public class MyIOExampleTest
     @Test
     void copyBufferedFileFail_Test()
     {
-
         boolean result = myIOExample.copyBufferedFile(
                 "failAddress", destinationFileName_test);
         Assertions.assertEquals(result, false);
-
     }
 
     /**
@@ -191,11 +172,9 @@ public class MyIOExampleTest
     @Test
     void copyFileWithReaderAndWriterSuccess_Test()
     {
-
         boolean result = myIOExample.copyFileWithReaderAndWriter(
                 sourceFileName_test, destinationFileName_test);
         Assertions.assertEquals(result, true);
-
     }
 
     /**
@@ -210,11 +189,9 @@ public class MyIOExampleTest
     @Test
     void copyFileWithReaderAndWriterFail_Test()
     {
-
         boolean result = myIOExample.copyFileWithReaderAndWriter(
                 "failAddress", destinationFileName_test);
         Assertions.assertEquals(result, false);
-
     }
 
 }
