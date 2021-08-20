@@ -3,8 +3,6 @@ package Laptenkov.io;
 import java.io.*;
 import java.util.Scanner;
 
-import static java.lang.System.*;
-
 public class MyIOExample
 {
     /**
@@ -23,19 +21,17 @@ public class MyIOExample
     {
         File file = new File(fileName);
         if (null != file && file.exists() ) {
-            out.println(file.getAbsolutePath());
-            out.println(file.getParent());
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.getParent());
 
             if (file.isFile())
             {
-                out.println(file.length());
-                out.println(file.lastModified());
+                System.out.println(file.length());
+                System.out.println(file.lastModified());
 
                 return true;
             }
-
         }
-
         return false;
     }
 
@@ -156,26 +152,17 @@ public class MyIOExample
                 }
             }
 
-            fileOutputStream.close();
-            fileInputStream.close();
-
             return true;
-
         }
-
         catch (FileNotFoundException fileNotFoundException)
         {
             fileNotFoundException.printStackTrace();
             return false;
         }
-
         catch (IOException ioException)
         {
             ioException.printStackTrace();
             return false;
-        }
-        finally {
-
         }
     }
 }
